@@ -8,334 +8,84 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ======================================================
-           PAINEL DE CORES E FONTES (TOTALMENTE EDITÁVEL)
-        ====================================================== */
         :root {
-            /* Cores da Marca */
-            --cor-primaria: #0287af; /* Bordô/Vinho da sua logo */
-            --cor-primaria-escura: #7a1b34; /* Tom mais escuro para botões ao passar o mouse */
-            --cor-secundaria: #F2C12E; /* Amarelo da sua logo */
-            
-            /* Cores de Fundo e Texto (Foco em Legibilidade) */
-            --cor-fundo-site: #cdcfd3; /* Cinza bem claro, quase branco */
-            --cor-fundo-secao: #FFFFFF; /* Branco puro para destacar áreas */
-            --cor-texto-principal: #000000; /* Chumbo/Preto suave (não cansa a vista) */
-            --cor-texto-secundario: #6C757D; /* Cinza médio para textos de apoio */
-            --cor-borda: #DEE2E6; /* Linhas de separação sutis */
-            
-            /* Fontes */
+            --cor-primaria: #0287af; 
+            --cor-primaria-escura: #016a8a; 
+            --cor-secundaria: #F2C12E; 
+            --cor-fundo-site: #cdcfd3; 
+            --cor-fundo-secao: #FFFFFF; 
+            --cor-texto-principal: #000000; 
+            --cor-texto-secundario: #6C757D; 
+            --cor-borda: #DEE2E6; 
             --fonte-titulos: 'Oswald', sans-serif;
             --fonte-textos: 'Inter', sans-serif;
         }
 
-        /* ======================================================
-           ESTRUTURA BÁSICA E RESET
-        ====================================================== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--fonte-textos);
-            background-color: var(--cor-fundo-site);
-            color: var(--cor-texto-principal);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--fonte-textos); background-color: var(--cor-fundo-site); color: var(--cor-texto-principal); line-height: 1.6; }
         h1, h2, h3, h4 { font-family: var(--fonte-titulos); text-transform: uppercase; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         img { max-width: 100%; display: block; }
-
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .espacamento-secao { padding: 80px 0; }
 
-        /* ======================================================
-           BOTÕES E COMPONENTES
-        ====================================================== */
-        .btn {
-            display: inline-block;
-            padding: 14px 30px;
-            font-family: var(--fonte-titulos);
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: center;
-            border: none;
-            transition: 0.3s background-color, 0.3s transform;
-        }
+        .btn { display: inline-block; padding: 14px 30px; font-family: var(--fonte-titulos); font-size: 1.1rem; border-radius: 4px; cursor: pointer; text-align: center; border: none; transition: 0.3s background-color, 0.3s transform; }
+        .btn-primario { background-color: var(--cor-primaria); color: #f1e8cc; }
+        .btn-primario:hover { background-color: var(--cor-primaria-escura); transform: translateY(-2px); }
+        .titulo-secao { text-align: center; font-size: 2.5rem; color: var(--cor-primaria); margin-bottom: 40px; }
 
-        .btn-primario {
-            background-color: var(--cor-primaria);
-            color: #f1e8cc;
-        }
-
-        .btn-primario:hover {
-            background-color: var(--cor-primaria-escura);
-            transform: translateY(-2px);
-        }
-
-        .titulo-secao {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--cor-primaria);
-            margin-bottom: 40px;
-        }
-
-        /* ======================================================
-           CABEÇALHO (HEADER)
-        ====================================================== */
-        header {
-            background-color: var(--cor-fundo-secao);
-            border-bottom: 4px solid var(--cor-secundaria);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .header-grid {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container img {
-            height: 70px; 
-            width: auto;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 25px;
-        }
-
-        nav a {
-            font-weight: 500;
-            font-size: 1rem;
-            color: var(--cor-texto-principal);
-        }
-
+        header { background-color: var(--cor-fundo-secao); border-bottom: 4px solid var(--cor-secundaria); padding: 15px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .header-grid { display: flex; justify-content: space-between; align-items: center; }
+        .logo-container img { height: 70px; width: auto; }
+        nav ul { display: flex; gap: 25px; align-items: center; }
+        nav a { font-weight: 500; font-size: 1rem; cursor: pointer; }
         nav a:hover { color: var(--cor-primaria); }
 
-        /* ======================================================
-           BANNER PRINCIPAL (HERO)
-        ====================================================== */
-        .banner {
-            background-image: linear-gradient(rgba(243, 241, 241, 0.315), rgb(253, 251, 251)), 
-                              url('https://st4.depositphotos.com/20520458/29882/i/450/depositphotos_298820258-stock-photo-architect-design-working-drawing-sketch.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 120px 0;
-            text-align: center;
-            border-bottom: 1px solid var(--cor-borda);
-        }
+        .banner { background-image: linear-gradient(rgba(243, 241, 241, 0.315), rgb(253, 251, 251)), url('https://st4.depositphotos.com/20520458/29882/i/450/depositphotos_298820258-stock-photo-architect-design-working-drawing-sketch.jpg'); background-size: cover; background-position: center; padding: 120px 0; text-align: center; border-bottom: 1px solid var(--cor-borda); }
+        .banner h1 { font-size: 4rem; color: var(--cor-primaria); margin-bottom: 20px; }
+        .banner p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; }
 
-        .banner h1 {
-            font-size: 4rem;
-            color: var(--cor-primaria);
-            margin-bottom: 20px;
-        }
+        .secao-cupom { background-color: var(--cor-secundaria); padding: 40px 0; text-align: center; border-bottom: 1px solid var(--cor-borda); }
+        .secao-cupom h2 { font-size: 2rem; margin-bottom: 10px; }
+        .secao-cupom p { font-size: 1.1rem; margin-bottom: 20px; }
+        .form-cupom { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .btn-cupom { background-color: var(--cor-texto-principal); color: #FFFFFF; font-size: 1.2rem; padding: 15px 40px;}
+        .btn-cupom:hover { background-color: #333333; }
 
-        .banner p {
-            font-size: 1.2rem;
-            color: var(--cor-texto-principal);
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
+        .grid-categorias { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card-categoria { background-color: var(--cor-fundo-secao); border: 1px solid var(--cor-borda); border-radius: 8px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+        .card-categoria:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--cor-primaria); }
+        .card-imagem { height: 250px; background-color: #E9ECEF; border-bottom: 4px solid var(--cor-secundaria); }
+        .card-imagem img { width: 100%; height: 100%; object-fit: cover; }
+        .card-conteudo { padding: 25px; text-align: center; }
+        .card-conteudo h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .card-conteudo p { color: var(--cor-texto-secundario); margin-bottom: 20px; }
 
-        /* ======================================================
-           CATEGORIAS DE PRODUTOS
-        ====================================================== */
-        .grid-categorias {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        footer { background-color: var(--cor-texto-principal); color: #FFFFFF; padding: 60px 0 20px; margin-top: 40px; border-top: 5px solid var(--cor-primaria); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-coluna h3 { color: var(--cor-secundaria); font-size: 1.5rem; margin-bottom: 20px; }
+        .footer-coluna p { margin-bottom: 10px; color: #CED4DA; }
+        .footer-coluna p a { color: #CED4DA; transition: color 0.3s; }
+        .footer-coluna p a:hover { color: var(--cor-secundaria); }
+        .redes-sociais { display: flex; gap: 15px; margin-top: 20px; }
+        .redes-sociais a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: #495057; border-radius: 50%; font-size: 1.2rem; }
+        .redes-sociais a:hover { background-color: var(--cor-secundaria); color: var(--cor-texto-principal); transform: translateY(-3px); }
+        .footer-direitos { text-align: center; padding-top: 20px; border-top: 1px solid #495057; color: #ADB5BD; font-size: 0.9rem; }
 
-        .card-categoria {
-            background-color: var(--cor-fundo-secao);
-            border: 1px solid var(--cor-borda);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+        .whatsapp-flutuante { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); z-index: 1000; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .whatsapp-flutuante:hover { background-color: #20b858; transform: scale(1.1); }
 
-        .card-categoria:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            border-color: var(--cor-primaria);
-        }
-
-        .card-imagem {
-            height: 250px;
-            background-color: #E9ECEF;
-            border-bottom: 4px solid var(--cor-secundaria);
-        }
-
-        .card-imagem img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-conteudo {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .card-conteudo h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--cor-texto-principal);
-        }
-
-        .card-conteudo p {
-            color: var(--cor-texto-secundario);
-            margin-bottom: 20px;
-        }
-
-        /* ======================================================
-           RODAPÉ E CONTATO
-        ====================================================== */
-        footer {
-            background-color: var(--cor-texto-principal);
-            color: #FFFFFF;
-            padding: 60px 0 20px;
-            margin-top: 40px;
-            border-top: 5px solid var(--cor-primaria);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-coluna h3 {
-            color: var(--cor-secundaria);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .footer-coluna p {
-            margin-bottom: 10px;
-            color: #CED4DA;
-        }
-
-        .footer-coluna p a {
-            color: #CED4DA;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-coluna p a:hover {
-            color: var(--cor-secundaria);
-        }
-
-        /* ESTILOS DAS REDES SOCIAIS */
-        .redes-sociais {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .redes-sociais a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: #495057;
-            color: #FFFFFF;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-
-        .redes-sociais a:hover {
-            background-color: var(--cor-secundaria);
-            color: var(--cor-texto-principal);
-            transform: translateY(-3px);
-        }
-        
-        /* ESTILOS DO MAPA */
-        .mapa-container {
-            margin-top: 15px;
-            width: 100%;
-            height: 150px; /* Altura do mapa */
-            border-radius: 8px; /* Cantos arredondados */
-            overflow: hidden;
-            border: 2px solid #495057; /* Borda ao redor do mapa */
-        }
-
-        .mapa-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .footer-direitos {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #495057;
-            color: #ADB5BD;
-            font-size: 0.9rem;
-        }
-
-        /* ======================================================
-           BOTÃO FLUTUANTE DO WHATSAPP
-        ====================================================== */
-        .whatsapp-flutuante {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-flutuante:hover {
-            background-color: #20b858;
-            color: #FFF;
-            transform: scale(1.1); /* Dá um zoom no botão ao passar o mouse */
-        }
-
-        /* Responsividade Básica e ajuste do Whatsapp para celular */
         @media (max-width: 768px) {
             .header-grid { flex-direction: column; gap: 15px; }
             .banner h1 { font-size: 2.8rem; }
             .banner { padding: 60px 0; }
-            
-            /* Botão um pouco menor no celular para não atrapalhar a leitura */
-            .whatsapp-flutuante {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 25px;
-            }
+            .whatsapp-flutuante { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 25px; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
@@ -354,7 +104,7 @@
                     <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
-            <a href="https://wa.me/554933809510?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20de%20Ferramentas." class="btn btn-primario">Fazer Orçamento</a>
+            <a href="https://wa.me/554933809510?text=Olá! Gostaria de fazer orçamento." class="btn btn-primario">Fazer Orçamento</a>
         </div>
     </header>
 
@@ -366,10 +116,19 @@
         </div>
     </section>
 
+    <section id="promocao" class="secao-cupom">
+        <div class="container">
+            <h2>Ganhe um Desconto Especial!</h2>
+            <p>Clique no botão abaixo e garanta o seu desconto vindo pelo site ate 10% diretamente no WhatsApp com nossos vendedores.</p>
+            <div class="form-cupom">
+                <a href="https://wa.me/554933809510?text=Vim pelo site! Quero meu Desconto ate 10%" target="_blank" class="btn btn-cupom">Resgatar Desconto</a>
+            </div>
+        </div>
+    </section>
+
     <section id="produtos" class="espacamento-secao">
         <div class="container">
             <h2 class="titulo-secao">Nossos Departamentos</h2>
-            
             <div class="grid-categorias">
                 <div class="card-categoria">
                     <div class="card-imagem">
@@ -378,7 +137,7 @@
                     <div class="card-conteudo">
                         <h3>Material Básico</h3>
                         <p>Cimentos, argamassas, areia, brita, tijolos e ferragens para estruturar sua obra com segurança.</p>
-                        <a href="https://wa.me/554933809510?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20de%20Material%20Básico." class="btn btn-primario" target="_blank" style="width: 100%;">Cotar Preço</a>
+                        <a href="https://wa.me/554933809510?text=Olá! Gostaria de fazer um orçamento de Material Básico." class="btn btn-primario" target="_blank" style="width: 100%;">Cotar Preço</a>
                     </div>
                 </div>
 
@@ -389,7 +148,7 @@
                     <div class="card-conteudo">
                         <h3>Acabamentos</h3>
                         <p>Porcelanatos, cerâmicas, tintas e revestimentos de primeira linha para dar vida aos ambientes.</p>
-                        <a href="https://wa.me/554933809510?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20de%20Acabamentos." class="btn btn-primario" target="_blank" style="width: 100%;">Cotar Preço</a>
+                        <a href="https://wa.me/554933809510?text=Olá! Gostaria de fazer um orçamento de Acabamentos." class="btn btn-primario" target="_blank" style="width: 100%;">Cotar Preço</a>
                     </div>
                 </div>
 
@@ -400,22 +159,10 @@
                     <div class="card-conteudo">
                         <h3>Ferramentas</h3>
                         <p>Equipamentos elétricos, manuais e itens de segurança (EPI) para melhor servir sua obra.</p>
-                        <a href="https://wa.me/554933809510?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20de%20Ferramentas." class="btn btn-primario" target="_blank" style="width: 100%;">Cotar Preço</a>
+                        <a href="https://wa.me/554933809510?text=Olá! Gostaria de fazer um orçamento de Ferramentas." class="btn btn-primario" target="_blank" style="width: 100%;">Cotar Preço</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="sobre" class="espacamento-secao" style="background-color: var(--cor-fundo-secao); border-top: 1px solid var(--cor-borda);">
-        <div class="container" style="text-align: center; max-width: 800px;">
-            <h2 class="titulo-secao">Tradição desde 1994</h2>
-            <p style="font-size: 1.1rem; color: var(--cor-texto-secundario); margin-bottom: 20px;">
-                A CASA Material de Construção LTDA atua há mais de 30 anos no comércio varejista, construindo uma história de confiança e parceria com nossos clientes.
-            </p>
-            <p style="font-size: 1.1rem; color: var(--cor-texto-secundario);">
-                Nosso compromisso é entregar materiais de excelência com agilidade logística, preço justo e um atendimento especializado para garantir que a sua construção ou reforma seja um sucesso do início ao fim.
-            </p>
         </div>
     </section>
 
@@ -425,41 +172,31 @@
                 <div class="footer-coluna">
                     <h3>CASA Material de Construção</h3>
                     <p>Referência em materiais de construção e acabamentos. Conte com a nossa equipe para o seu projeto.</p>
-                    
                     <div class="redes-sociais">
-                        <a href="https://www.instagram.com/casamaterial02/" target="_blank" aria-label="Siga-nos no Instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=100063790161055" target="_blank" aria-label="Curta nossa página no Facebook">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
+                        <a href="https://www.instagram.com/casamaterial02/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100063790161055" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                     </div>
                 </div>
-                
                 <div class="footer-coluna">
                     <h3>Atendimento</h3>
                     <p><strong>WhatsApp:</strong> <a href="https://wa.me/554933809510" target="_blank">(49) 3380-9510</a></p>
                     <p><strong>Televendas:</strong> <a href="tel:+554933809510">(49) 3380-9510</a></p>
                     <p><strong>Email:</strong> <a href="mailto:cmcasamaterial@gmail.com">cmcasamaterial@gmail.com</a></p>
                 </div>
-                
                 <div class="footer-coluna">
                     <h3>Onde Estamos</h3>
                     <p>R. Dr. Aujor Luz - 1200</p>
                     <p>Bairro Sta Catarina - Lages, SC</p>
                     <p><strong>Horário:</strong> Seg a Sex das 08h às 18:30h Sab das 8:00 ás 16:00</p>
-                            
-                    </div>
                 </div>
             </div>
-            
             <div class="footer-direitos">
                 <p>© 2026 CASA Material de Construção LTDA. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/554933809510?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20atendimento." class="whatsapp-flutuante" target="_blank" aria-label="Fale conosco pelo WhatsApp">
+    <a href="https://wa.me/554933809510?text=Olá! Vim pelo site e gostaria de atendimento." class="whatsapp-flutuante" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
